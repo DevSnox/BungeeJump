@@ -17,26 +17,40 @@
 
 package me.devsnox.bungeejump.utils;
 
-import net.md_5.bungee.api.ChatColor;
-import net.md_5.bungee.api.chat.TextComponent;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Yasin Dalal (DevSnox)
- * Created by Yasin Dalal (DevSnox) on 02.05.2018 00:00.
+ * Created by Yasin Dalal (DevSnox) on 02.09.2018 23:37.
  */
-public final class Colors {
+public enum  Messages {
 
-    // TODO: 03.09.2018 Better method (Update code)! 
-    public static TextComponent convertStringWithColors(final String message) {
-        final TextComponent textComponent = new TextComponent();
-        final String[] edit = message.replaceAll("&", "&§").split("&");
+    PREFIX,
+    NO_PERMISSIONS,
+    SERVER_MESSAGE,
+    WARPED_TO_SERVER,
+    LIST_OF_SERVERS,
+    CONSOLE_MESSAGE,
+    SERVER_NOT_EXISTS,
+    ALREADY_CONNECTED;
 
-        for (final String session : edit) {
-            final TextComponent textComponent1 = new TextComponent(session.substring(2, session.length()));
-            textComponent.setColor(ChatColor.getByChar(session.charAt(1)));
-            textComponent.addExtra(textComponent1);
-        }
+    private final Map<Messages, String> messages;
 
-        return textComponent;
+    Messages() {
+        this.messages = new HashMap<>();
+    }
+
+
+    public String asString() {
+        return this.messages.get(this);
+    }
+
+    public void set(String message) {
+        this.messages.put(this, message);
+    }
+
+    public String formatedName() {
+        return this.name().toLowerCase().replaceAll("_", "-");
     }
 }
