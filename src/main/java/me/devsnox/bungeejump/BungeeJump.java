@@ -22,7 +22,6 @@ import me.devsnox.bungeejump.commands.WarpCommand;
 import me.devsnox.bungeejump.configuration.AdvancedPlugin;
 import me.devsnox.bungeejump.utils.Messages;
 import net.md_5.bungee.api.ChatColor;
-import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.PluginManager;
 import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.YamlConfiguration;
@@ -47,7 +46,7 @@ public final class BungeeJump extends AdvancedPlugin {
 
         try {
             this.loadConfiguration();
-        } catch (IOException e) {
+        } catch (final IOException e) {
             e.printStackTrace();
             // TODO: 03.09.2018 User friendly error message 
         }
@@ -56,7 +55,7 @@ public final class BungeeJump extends AdvancedPlugin {
     }
 
     private void registerCommands() {
-        PluginManager pluginManager = this.getProxy().getPluginManager();
+        final PluginManager pluginManager = this.getProxy().getPluginManager();
 
         pluginManager.registerCommand(this, new WarpCommand("server"));
         pluginManager.registerCommand(this, new ListCommand("servers"));
@@ -68,13 +67,12 @@ public final class BungeeJump extends AdvancedPlugin {
 
         final boolean prefixEnabled = configuration.getBoolean("prefix-enabled");
 
-        for (Messages message : Messages.values()) {
-
+        for (final Messages message : Messages.values()) {
             final StringBuilder stringBuilder
                     = new StringBuilder(ChatColor.translateAlternateColorCodes('&', configuration.getString(message.formatedName())));
 
             if (message != Messages.PREFIX && prefixEnabled) {
-                stringBuilder.insert(0, Messages.PREFIX);
+                stringBuilder.insert(0, Messages.PREFIX.asString());
             } else {
                 stringBuilder.append(ChatColor.RESET + " ");
             }
