@@ -2,7 +2,7 @@
 # [ --------------------------------------------------------------------------------------- ] #
 #   -= BungeeJump =-                                                                          #
 #   -= Author: DevSnox =-                                                                     #
-#   -= Version: 1.3-SNAPSHOT =-                                                                        #
+#   -= Version: 1.2.1-RELEASE =-                                                              #
 #   -= Contact: E-mail: me.devsnox@gmail.com Skype: live:chaos3729 Discord: DevSnox#5642 =-   #
 #   -= Informations:                                                                          #
 #   -= Please send Errors per PM on spigotmc.org =-                                           #
@@ -16,7 +16,7 @@
   prefix: "&e[&cBungeeJump&e]"
 
   # { HELP: When you don't want the prefix before each message }
-  prefix-enabled: true
+  prefix-enabled: false
 
   # { HELP: Message shown when console try to warp to another server }
   console-message: "&cYou must be a player to execute this command!"
