@@ -16,7 +16,7 @@
   prefix: "&e[&cBungeeJump&e]"
 
   # { HELP: When you don't want the prefix before each message }
-  prefix-enabled: true
+  prefix-enabled: false
 
   # { HELP: Message shown when console try to warp to another server }
   console-message: "&cYou must be a player to execute this command!"
