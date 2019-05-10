@@ -17,7 +17,6 @@
 
 package me.devsnox.bungeejump.commands;
 
-import me.devsnox.bungeejump.utils.Colors;
 import me.devsnox.bungeejump.utils.Messages;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
@@ -57,7 +56,7 @@ public final class ListCommand extends Command {
             } else
                 stringBuilder.append("none"); // TODO: 03.09.2018 Add posibility to define "none" in the configuration file
 
-            sender.sendMessage(Colors.convertStringWithColors(Messages.LIST_OF_SERVERS.asString().replaceAll("%servers%", stringBuilder.toString())));
+            sender.sendMessage(Messages.LIST_OF_SERVERS.get().replace("%servers%", stringBuilder.toString()).asComponent());
         }
     }
 }

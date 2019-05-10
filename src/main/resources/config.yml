@@ -2,8 +2,8 @@
 # [ --------------------------------------------------------------------------------------- ] #
 #   -= BungeeJump =-                                                                          #
 #   -= Author: DevSnox =-                                                                     #
-#   -= Version: 1.2.1-RELEASE =-                                                              #
-#   -= Contact: E-mail: me.devsnox@gmail.com Skype: live:chaos3729 Discord: DevSnox#5642 =-   #
+#   -= Version: 1.2.2 =-                                                                      #
+#   -= Contact: E-mail: me.devsnox@gmail.com  Discord: DevSnox#7154 =-                        #
 #   -= Informations:                                                                          #
 #   -= Please send Errors per PM on spigotmc.org =-                                           #
 #   -= When you use this Plugin please rate it on spigotmc.org =-                             #
@@ -25,18 +25,18 @@
   no-permissions: "&cSorry but you don't have the permissions to do that!"
 
   # { HELP: The Message displayed when entring the command /server }
-  server-message: "&bTo change servers, type &d/server [servername] \n&bTo list servers, type &d/servers"
+  server-message: "&bTo switch the server, type &d/server [servername] \n&bTo list servers, type &d/servers"
 
   # { HELP: The message displayed when you have been warped to a server PLACEHOLDERS: %server% }
-  warped-to-server: "&bYou have been sent to the server &e%server%!"
+  warped-to-server: "&bYou have been sent to &e%server%!"
 
   # { HELP: The message displayed when the server does not exist PLACEHOLDERS: %server% }
-  server-not-exists: "&cThis Server does not exists type /servers!"
+  server-not-exists: "&cThis Server doesn't exist, type /servers!"
 
   # { HELP: The message displayed when the user already is on this server PLACEHOLDERS: %server% }
   already-connected: "&cYou are already connected to this server!"
 
   # { HELP: The message displayed when you enter the command /servers PLACEHOLDERS: %servers% }
-  list-of-servers: "&bHere you can see all servers you can connect to&8: &a%servers%"
+  list-of-servers: "&bAll servers you can connect to&8: &a%servers%"
 
 #{ --------- }

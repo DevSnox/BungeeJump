@@ -35,19 +35,18 @@ public enum  Messages {
     SERVER_NOT_EXISTS,
     ALREADY_CONNECTED;
 
-    private final Map<Messages, String> messages;
+    private final Map<Messages, Message> messages;
 
     Messages() {
         this.messages = new HashMap<>();
     }
 
-
-    public String asString() {
+    public Message get() {
         return this.messages.get(this);
     }
 
     public void set(String message) {
-        this.messages.put(this, message);
+        this.messages.put(this, new Message(message));
     }
 
     public String formatedName() {
