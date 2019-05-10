@@ -6,7 +6,7 @@
 
     <groupId>me.devsnox</groupId>
     <artifactId>BungeeJump</artifactId>
-    <version>1.2.2-SNAPSHOT</version>
+    <version>1.2.2-RELEASE</version>
 
 
     <repositories>
