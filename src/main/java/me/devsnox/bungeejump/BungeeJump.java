@@ -72,7 +72,7 @@ public final class BungeeJump extends AdvancedPlugin {
                     = new StringBuilder(ChatColor.translateAlternateColorCodes('&', configuration.getString(message.formatedName())));
 
             if (message != Messages.PREFIX && prefixEnabled) {
-                stringBuilder.insert(0, Messages.PREFIX.asString());
+                stringBuilder.insert(0, Messages.PREFIX.get().asComponent());
             } else {
                 stringBuilder.append(ChatColor.RESET + " ");
             }
