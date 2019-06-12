@@ -17,11 +17,14 @@
 
 package me.devsnox.bungeejump;
 
+import me.devsnox.bungeejump.commands.DirectConnectCommand;
 import me.devsnox.bungeejump.commands.ListCommand;
 import me.devsnox.bungeejump.commands.WarpCommand;
 import me.devsnox.bungeejump.configuration.AdvancedPlugin;
 import me.devsnox.bungeejump.utils.Messages;
 import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.ProxyServer;
+import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.plugin.PluginManager;
 import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.YamlConfiguration;
@@ -29,6 +32,8 @@ import org.bstats.bungeecord.Metrics;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Map;
+import java.util.function.BiConsumer;
 
 // TODO: 03.09.2018 Better logging!
 
@@ -59,6 +64,11 @@ public final class BungeeJump extends AdvancedPlugin {
 
         pluginManager.registerCommand(this, new WarpCommand("server"));
         pluginManager.registerCommand(this, new ListCommand("servers"));
+
+
+        for (String name : ProxyServer.getInstance().getServers().keySet()) {
+            pluginManager.registerCommand(this, new DirectConnectCommand(name));
+        }
     }
 
     private void loadConfiguration() throws IOException {
