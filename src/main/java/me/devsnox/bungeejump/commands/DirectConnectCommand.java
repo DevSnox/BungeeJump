@@ -17,12 +17,12 @@ public class DirectConnectCommand extends Command {
             if (sender instanceof ProxiedPlayer) {
                 ProxiedPlayer proxiedPlayer = (ProxiedPlayer) sender;
 
-                if (proxiedPlayer.getServer().getInfo().getName().equalsIgnoreCase(args[0])) {
+                if (proxiedPlayer.getServer().getInfo().getName().equalsIgnoreCase(this.getName())) {
                     sender.sendMessage(Messages.ALREADY_CONNECTED.get().replace("%server%", this.getName()).asComponent());
                     return;
                 }
 
-                ((ProxiedPlayer) sender).connect(ProxyServer.getInstance().getServerInfo(args[0]));
+                ((ProxiedPlayer) sender).connect(ProxyServer.getInstance().getServerInfo(this.getName()));
                 sender.sendMessage(Messages.WARPED_TO_SERVER.get().replace("%server%", this.getName()).asComponent());
 
             } else {
