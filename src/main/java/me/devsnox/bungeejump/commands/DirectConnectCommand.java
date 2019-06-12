@@ -18,12 +18,12 @@ public class DirectConnectCommand extends Command {
                 ProxiedPlayer proxiedPlayer = (ProxiedPlayer) sender;
 
                 if (proxiedPlayer.getServer().getInfo().getName().equalsIgnoreCase(args[0])) {
-                    sender.sendMessage(Messages.ALREADY_CONNECTED.get().replace("%server%", args[0]).asComponent());
+                    sender.sendMessage(Messages.ALREADY_CONNECTED.get().replace("%server%", this.getName()).asComponent());
                     return;
                 }
 
                 ((ProxiedPlayer) sender).connect(ProxyServer.getInstance().getServerInfo(args[0]));
-                sender.sendMessage(Messages.WARPED_TO_SERVER.get().replace("%server%", args[0]).asComponent());
+                sender.sendMessage(Messages.WARPED_TO_SERVER.get().replace("%server%", this.getName()).asComponent());
 
             } else {
                 sender.sendMessage(Messages.CONSOLE_MESSAGE.get().asComponent());
