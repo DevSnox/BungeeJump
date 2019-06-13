@@ -24,8 +24,10 @@ import me.devsnox.bungeejump.configuration.AdvancedPlugin;
 import me.devsnox.bungeejump.configuration.ConfigurationManager;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.PluginManager;
+import net.md_5.bungee.config.YamlConfiguration;
 import org.bstats.bungeecord.Metrics;
 
+import java.io.File;
 import java.io.IOException;
 
 // TODO: 03.09.2018 Better logging!
@@ -42,6 +44,17 @@ public final class BungeeJump extends AdvancedPlugin {
     @Override
     public void onEnable() {
         new Metrics(this);
+
+        try {
+            if(!YamlConfiguration.getProvider(YamlConfiguration.class)
+                    .load(new File(this.getDataFolder() + File.separator + "config.yml")).contains("config-version")) {
+
+                new File(this.getDataFolder() + File.separator + "config.yml")
+                        .renameTo(new File(this.getDataFolder() + File.separator + "old-config.txt"));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         this.saveResource("config.yml", false);
         this.saveResource("messages.yml", false);
