@@ -1,30 +1,24 @@
 package me.devsnox.bungeejump.commands;
 
+import me.devsnox.bungeejump.WarpManager;
 import me.devsnox.bungeejump.utils.Messages;
 import net.md_5.bungee.api.CommandSender;
-import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
 
 public class DirectConnectCommand extends Command {
 
-    public DirectConnectCommand(final String name) {
+    private WarpManager warpManager;
+
+    public DirectConnectCommand(final String name, WarpManager warpManager) {
         super(name);
+        this.warpManager = warpManager;
     }
 
     public void execute(final CommandSender sender, final String[] args) {
         if (sender.hasPermission("bungeejump.directconnect")) {
             if (sender instanceof ProxiedPlayer) {
-                ProxiedPlayer proxiedPlayer = (ProxiedPlayer) sender;
-
-                if (proxiedPlayer.getServer().getInfo().getName().equalsIgnoreCase(this.getName())) {
-                    sender.sendMessage(Messages.ALREADY_CONNECTED.get().replace("%server%", this.getName()).asComponent());
-                    return;
-                }
-
-                ((ProxiedPlayer) sender).connect(ProxyServer.getInstance().getServerInfo(this.getName()));
-                sender.sendMessage(Messages.WARPED_TO_SERVER.get().replace("%server%", this.getName()).asComponent());
-
+                this.warpManager.teleportPlayer((ProxiedPlayer) sender, this.getName());
             } else {
                 sender.sendMessage(Messages.CONSOLE_MESSAGE.get().asComponent());
             }

@@ -28,6 +28,7 @@ public enum  Messages {
 
     PREFIX,
     NO_PERMISSIONS,
+    NO_JOIN_PERMISSIONS,
     SERVER_MESSAGE,
     WARPED_TO_SERVER,
     LIST_OF_SERVERS,
