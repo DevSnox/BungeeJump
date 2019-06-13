@@ -24,7 +24,6 @@ import me.devsnox.bungeejump.configuration.AdvancedPlugin;
 import me.devsnox.bungeejump.utils.Messages;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ProxyServer;
-import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.plugin.PluginManager;
 import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.YamlConfiguration;
@@ -32,8 +31,6 @@ import org.bstats.bungeecord.Metrics;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Map;
-import java.util.function.BiConsumer;
 
 // TODO: 03.09.2018 Better logging!
 
@@ -73,7 +70,7 @@ public final class BungeeJump extends AdvancedPlugin {
 
     private void loadConfiguration() throws IOException {
         final Configuration configuration = YamlConfiguration.getProvider(YamlConfiguration.class)
-                .load(new File(this.getDataFolder() + File.separator + "config.yml"));
+                .load(new File(this.getDataFolder() + File.separator + "messages.yml"));
 
         final boolean prefixEnabled = configuration.getBoolean("prefix-enabled");
 
