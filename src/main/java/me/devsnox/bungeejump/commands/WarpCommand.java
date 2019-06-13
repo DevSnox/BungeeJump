@@ -17,10 +17,10 @@
 
 package me.devsnox.bungeejump.commands;
 
+import me.devsnox.bungeejump.WarpManager;
 import me.devsnox.bungeejump.utils.Messages;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
-import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
 
@@ -30,8 +30,11 @@ import net.md_5.bungee.api.plugin.Command;
  */
 public final class WarpCommand extends Command {
 
-    public WarpCommand(final String name) {
+    private WarpManager warpManager;
+
+    public WarpCommand(final String name, WarpManager warpManager) {
         super(name);
+        this.warpManager = warpManager;
     }
 
     public void execute(CommandSender sender, String[] args) {
@@ -41,13 +44,7 @@ public final class WarpCommand extends Command {
             } else {
                 if (sender instanceof ProxiedPlayer) {
                     if (ProxyServer.getInstance().getServerInfo(args[0]) != null) {
-                        ProxiedPlayer proxiedPlayer = (ProxiedPlayer) sender;
-                        if (proxiedPlayer.getServer().getInfo().getName().equalsIgnoreCase(args[0])) {
-                            sender.sendMessage(Messages.ALREADY_CONNECTED.get().replace("%server%", args[0]).asComponent());
-                        } else {
-                            ((ProxiedPlayer) sender).connect(ProxyServer.getInstance().getServerInfo(args[0]));
-                            sender.sendMessage(Messages.WARPED_TO_SERVER.get().replace("%server%", args[0]).asComponent());
-                        }
+                        this.warpManager.teleportPlayer((ProxiedPlayer)sender, args[0]);
                     } else {
                         sender.sendMessage(Messages.SERVER_NOT_EXISTS.get().replace("%server%", args[0]).asComponent());
                     }

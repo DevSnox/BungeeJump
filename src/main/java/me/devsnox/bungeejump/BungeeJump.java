@@ -21,15 +21,11 @@ import me.devsnox.bungeejump.commands.DirectConnectCommand;
 import me.devsnox.bungeejump.commands.ListCommand;
 import me.devsnox.bungeejump.commands.WarpCommand;
 import me.devsnox.bungeejump.configuration.AdvancedPlugin;
-import me.devsnox.bungeejump.utils.Messages;
-import net.md_5.bungee.api.ChatColor;
+import me.devsnox.bungeejump.configuration.ConfigurationManager;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.PluginManager;
-import net.md_5.bungee.config.Configuration;
-import net.md_5.bungee.config.YamlConfiguration;
 import org.bstats.bungeecord.Metrics;
 
-import java.io.File;
 import java.io.IOException;
 
 // TODO: 03.09.2018 Better logging!
@@ -40,18 +36,26 @@ import java.io.IOException;
  */
 public final class BungeeJump extends AdvancedPlugin {
 
+    private ConfigurationManager configurationManager;
+    private WarpManager warpManager;
+
     @Override
     public void onEnable() {
         new Metrics(this);
 
         this.saveResource("config.yml", false);
+        this.saveResource("messages.yml", false);
+
+        this.configurationManager = new ConfigurationManager(this.getDataFolder());
 
         try {
-            this.loadConfiguration();
-        } catch (final IOException e) {
+            this.configurationManager.loadMainConfiguration();
+            this.configurationManager.loadMessageConfiguration();
+        } catch (IOException e) {
             e.printStackTrace();
-            // TODO: 03.09.2018 User friendly error message 
         }
+
+        this.warpManager = new WarpManager();
 
         this.registerCommands();
     }
@@ -59,32 +63,12 @@ public final class BungeeJump extends AdvancedPlugin {
     private void registerCommands() {
         final PluginManager pluginManager = this.getProxy().getPluginManager();
 
-        pluginManager.registerCommand(this, new WarpCommand("server"));
+        pluginManager.registerCommand(this, new WarpCommand("server", this.warpManager));
         pluginManager.registerCommand(this, new ListCommand("servers"));
 
 
         for (String name : ProxyServer.getInstance().getServers().keySet()) {
-            pluginManager.registerCommand(this, new DirectConnectCommand(name));
-        }
-    }
-
-    private void loadConfiguration() throws IOException {
-        final Configuration configuration = YamlConfiguration.getProvider(YamlConfiguration.class)
-                .load(new File(this.getDataFolder() + File.separator + "messages.yml"));
-
-        final boolean prefixEnabled = configuration.getBoolean("prefix-enabled");
-
-        for (final Messages message : Messages.values()) {
-            final StringBuilder stringBuilder
-                    = new StringBuilder(ChatColor.translateAlternateColorCodes('&', configuration.getString(message.formatedName())));
-
-            if (message != Messages.PREFIX && prefixEnabled) {
-                stringBuilder.insert(0, Messages.PREFIX.get().asComponent());
-            } else {
-                stringBuilder.append(ChatColor.RESET + " ");
-            }
-
-            Messages.valueOf(message.name()).set(stringBuilder.toString());
+            pluginManager.registerCommand(this, new DirectConnectCommand(name, this.warpManager));
         }
     }
 }

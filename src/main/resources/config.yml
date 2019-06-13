@@ -9,10 +9,20 @@
 #   -= When you use this Plugin please rate it on spigotmc.org =-                             #
 # [ --------------------------------------------------------------------------------------- ] #
 
+# { DATA: Do not modify! }
 
-# You can find the message configuration in the messages.yml file.
+  config-version: 1.0
+
+# { -------------------- }
 
 
 # { General configuration }
 
-#{ --------- }
+  servers:
+    default:
+      # The permission for permission joins is always bungeejump.join.<server> as example "bungeejump.join.skyblock"
+      permission-join: false
+    server-1:
+      permission-join: true
+
+# { ---------------------- }

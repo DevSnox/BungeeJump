@@ -24,19 +24,27 @@
   # { HELP: The message sent when a player try a command without permissions }
   no-permissions: "&cSorry but you don't have the permissions to do that!"
 
+  # { HELP: This message is displayed when a user trys to join a server without the needed permission }
+  # { PLACEHOLDERS: %server% }
+  no-join-permissions: "&cYou're not permitted to join &b%server%&c!"
+
   # { HELP: The Message displayed when entring the command /server }
   server-message: "&bTo switch the server, type &d/server [servername] \n&bTo list servers, type &d/servers"
 
-  # { HELP: The message displayed when you have been warped to a server PLACEHOLDERS: %server% }
+  # { HELP: The message displayed when you have been warped to a server }
+  # { PLACEHOLDERS: %server% }
   warped-to-server: "&bYou have been sent to &e%server%!"
 
-  # { HELP: The message displayed when the server does not exist PLACEHOLDERS: %server% }
+  # { HELP: The message displayed when the server does not exist }
+  # { PLACEHOLDERS: %server% }
   server-not-exists: "&cThis Server doesn't exist, type /servers!"
 
-  # { HELP: The message displayed when the user already is on this server PLACEHOLDERS: %server% }
+  # { HELP: The message displayed when the user already is on this server }
+  # { PLACEHOLDERS: %server% }
   already-connected: "&cYou are already connected to this server!"
 
-  # { HELP: The message displayed when you enter the command /servers PLACEHOLDERS: %servers% }
+  # { HELP: The message displayed when you enter the command /servers }
+  # { PLACEHOLDERS: %servers% }
   list-of-servers: "&bAll servers you can connect to&8: &a%servers%"
 
 #{ --------- }
